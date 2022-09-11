@@ -1,0 +1,21 @@
+[
+    {
+        "nick": "Angel",
+        "months": 3,
+        "profileUrl": "https://i.pravatar.cc/150?img=1", 
+        "description":"Midudev es senior en React"     
+      },
+    {
+        "nick": "Laura",
+        "months": 9,
+        "profileUrl": "https://i.pravatar.cc/150?img=2", 
+        "description":"Descripcion para Laura"     
+      },
+    {
+        "nick": "Karla",
+        "months": 32,
+        "profileUrl": "https://i.pravatar.cc/150?img=3", 
+        "description":"Descripcion para Karla"     
+      }
+      
+]

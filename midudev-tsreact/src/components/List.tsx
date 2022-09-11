@@ -8,9 +8,9 @@ const List = ({subs}:Props) => {
   return (
     <ul>
         {
-          subs.map((sub) => {
+          subs.map((sub,index) => {
             return (
-              <li>
+              <li key={index}>
                 <img src={sub.avatar} />
                 <h4>{sub.nickname} (<small>{sub.months}</small>)</h4>
                 <p>{sub.description}</p>

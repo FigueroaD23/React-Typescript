@@ -4,32 +4,19 @@ import Form from "./components/Form";
 import './App.css'
 import {Sub} from "./interfaces/Sub";
 
-const initial_state = [
-  {
-    nickname: "Angel",
-    months: 3,
-    avatar: "https://i.pravatar.cc/150?img=4",      
-  },
-  {
-    nickname: "Midudev",
-    months: 21,
-    avatar: "https://i.pravatar.cc/150?img=1",
-    description: "Me enseñó React"
-  },
-  {
-    nickname: "Bluuweb",
-    months: 12,
-    avatar: "https://i.pravatar.cc/150?img=3",
-    description: "Me enseñó Js y Vue",    
-  }
-]
 
 function App() {
   const [subs, setSubs] = useState<Sub[]>([])
   const divRef = useRef<HTMLDivElement>(null)
   
   useEffect(() => {
-    setSubs(initial_state)
+    // setSubs(initial_state)
+    fetch("../../src/consumo/Subs.json")
+      .then(resp => resp.json())
+      .then(subs=>{
+        console.log(subs)
+        setSubs(subs)
+      })
       
   }, [])
   
