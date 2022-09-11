@@ -1,4 +1,5 @@
-import { useReducer, useState } from "react"
+import { useReducer } from "react"
+import useNewSubForm from "../hooks/useNewSubForm";
 import {Sub} from "../interfaces/Sub";
 interface FormState {
     inputValues : Sub
@@ -8,34 +9,7 @@ interface PropsDeForm {
     onNewSub: (newSub:Sub)=> void
 }
 
-type FormReducerAction = {
-    type: "change_value",
-    payload: {
-        inputName:string,
-        inputValue:string
-    }
-} | {
-    type: "clear"
-}
 
-const initial_state = {
-    nickname:'',
-    months:0,
-    avatar:'https://i.pravatar.cc/150?img=',
-    description:''
-}
-
-const formReducer = (state:FormState["inputValues"], action:FormReducerAction)=>{
-    switch(action.type){
-        case "change_value":
-            return{
-                ...state,
-                [action.payload.inputName]: action.payload.inputValue
-            }
-        case "clear":
-            return initial_state
-    }
-}
 
 const Form = ({onNewSub}:PropsDeForm) => {
 
@@ -45,8 +19,7 @@ const Form = ({onNewSub}:PropsDeForm) => {
         avatar:'https://i.pravatar.cc/150?img=',
         description:''
     }) */
-
-    const [inputValues, dispatch] = useReducer(formReducer, initial_state)
+    const [inputValues, dispatch] = useNewSubForm()    
 
     const handleChange = (evt:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=>{
         /* setInputValues({
