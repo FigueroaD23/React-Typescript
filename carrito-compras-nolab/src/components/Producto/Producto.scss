@@ -1,6 +1,5 @@
 
-.producto{  
-
+.producto{      
     display: flex;
     flex-direction: column;
     background-color: rgb(255, 255, 255);
@@ -11,24 +10,25 @@
     padding: 15px;
     text-align: center;
     transition: transform 0.5s ease;
+    h2,p{
+      margin: 5px;
+    }
+    img{
+      width: 100%;      
+      object-fit:contain;
+      max-height: 250px;
+      border-radius: 10px;
+      margin:0px 0 10px 0;
+    }
 }
 
-.producto h2,p{
-  margin: 5px;
-}
 
-.producto img{
-  width: 100%;
-  object-fit: cover;  
-  max-height: 150px;
-  border-radius: 10px;
-  margin:0px 0 10px 0;
-}
 hr{
     margin:10px 0;
 }
 
 .AddCartBtn{
+    margin-top: auto;
     padding:15px;
     border-radius: 5px;
     background-color: rgb(243, 235, 253);    
@@ -47,4 +47,10 @@ hr{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+
+@media (min-width: 200px) and (max-width: 580px) {
+    .agrupados{
+        flex-direction: column;
+    }
 }

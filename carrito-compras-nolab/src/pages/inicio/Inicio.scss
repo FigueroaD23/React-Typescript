@@ -7,18 +7,3 @@
     flex-direction: column;
     flex-wrap: wrap;  
   }
-
-.ListOfProducts{
-    margin-top: 20px;;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
-    gap:20px;
-}
-
-
-@media (min-width: 200px) and (max-width: 580px) {
-    .ListOfProducts{
-        grid-template-columns: repeat(auto-fit,minmax(170px,1fr));        
-    }
-}
