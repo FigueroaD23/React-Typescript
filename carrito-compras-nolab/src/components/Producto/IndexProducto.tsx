@@ -1,11 +1,13 @@
 import "./Producto.scss"
 import IProducto from "../../interface/Producto";
 import useInterObserver from "../../hooks/userInterObserver";
-import { useRef } from "react";
+import {CartContext} from "../../Context/ContextCarrito";
+import { useContext, useRef } from "react";
 interface propsProducto {
     Producto:IProducto
 }
 export const Producto = ({Producto}:propsProducto) => {
+    const {carrito,actions} = useContext(CartContext)
     const gifRef = useRef(null)  
     const {show} = useInterObserver({distancia:'0px',externalRef:gifRef,once:false})
     return (
@@ -17,7 +19,7 @@ export const Producto = ({Producto}:propsProducto) => {
                 <p>${Producto.price}MXN</p>
                 <p>Stock: {Producto.stock}</p>
             </div>
-            <button className="AddCartBtn">Añadir carrito</button>
+            <button className="AddCartBtn" onClick={()=>{actions.add(Producto.id)}}>Añadir carrito</button>
         </div>
     )
 }

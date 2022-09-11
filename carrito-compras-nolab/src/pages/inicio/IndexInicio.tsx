@@ -6,6 +6,7 @@ import Producto from "../../interface/Producto";
 import useInterObserver from "../../hooks/userInterObserver";
 import debounce from "just-debounce-it";
 import getProductsService from "../../services/getProducts";
+import Carrito from "../../components/Carrito/CarritoIndex";
 
 const IndexInicio = () => {
   const [productos, setProductos] = useState<Producto[]>([])
@@ -34,6 +35,7 @@ const IndexInicio = () => {
   
   return (
     <div className="container">
+      <Carrito></Carrito>
       <h5 style={{marginBottom:'-40px', marginTop:'20px'}}>Mostrando {pagina} resultados de 20</h5>
       <ListOfProducts Productos={productos}/>
       <div ref={escuchador}>{loading?"cargando":""}</div>
