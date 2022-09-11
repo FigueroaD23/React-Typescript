@@ -2,11 +2,12 @@ import "./Producto.scss"
 import IProducto from "../../interface/Producto";
 import useInterObserver from "../../hooks/userInterObserver";
 import {CartContext} from "../../Context/ContextCarrito";
-import { useContext, useRef } from "react";
+
+import { useContext, useRef, memo } from "react";
 interface propsProducto {
     Producto:IProducto
 }
-export const Producto = ({Producto}:propsProducto) => {
+const Producto = ({Producto}:propsProducto) => {
     const {carrito,actions} = useContext(CartContext)
     const gifRef = useRef(null)  
     const {show} = useInterObserver({distancia:'0px',externalRef:gifRef,once:false})
@@ -23,3 +24,7 @@ export const Producto = ({Producto}:propsProducto) => {
         </div>
     )
 }
+
+export default memo(Producto,(prevProps,nextProps) =>{
+    return prevProps.Producto.id === nextProps.Producto.id
+  })

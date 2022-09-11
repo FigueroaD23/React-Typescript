@@ -33,7 +33,8 @@ export function CartProvider ({children}:PropsContext){
                 carrito,
                 actions:{
                     add:(productId:number)=>{
-                        return setCarrito((curr)=>({...curr,[productId]:(curr[productId] || 0 + 1)}))
+                        return setCarrito((curr)=>({...curr,
+                            [productId]:(curr[productId] || 0) +1}))
                     },
                     remove:(productId:number)=>{
                         return setCarrito((curr)=>({...curr,

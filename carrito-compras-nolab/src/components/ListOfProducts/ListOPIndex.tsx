@@ -1,5 +1,5 @@
 import "./ListOP.scss"
-import { Producto } from "../../components/Producto/IndexProducto";
+import Producto from "../../components/Producto/IndexProducto";
 import IProducto from "../../interface/Producto";
 interface ListOfProps {
     Productos: IProducto[]
