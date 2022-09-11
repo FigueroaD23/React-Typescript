@@ -1,5 +1,9 @@
 
 .producto{      
+  transition:font-weight 50ms linear,box-shadow 100ms ease,top ease-in-out 200ms, opacity linear 200ms;  
+  position:relative;
+  top:20px;
+  opacity:0;
     display: flex;
     flex-direction: column;
     background-color: rgb(255, 255, 255);
@@ -8,17 +12,22 @@
     border-radius: 20px;
     box-shadow: 0 10px 25px 10px rgba(187, 185, 185, 0.15);    
     padding: 15px;
-    text-align: center;
-    transition: transform 0.5s ease;
+    text-align: center;    
     h2,p{
       margin: 5px;
     }
     img{
       width: 100%;      
       object-fit:contain;
+      min-height: 250px;
       max-height: 250px;
       border-radius: 10px;
       margin:0px 0 10px 0;
+      overflow: hidden;
+      transition: transform 0.2s ease;
+      &:hover{
+        transform: scale(1.05);
+      }
     }
 }
 
@@ -52,5 +61,22 @@ hr{
 @media (min-width: 200px) and (max-width: 580px) {
     .agrupados{
         flex-direction: column;
+    }
+}
+
+.visible{
+    top:0;
+      opacity:1;
+    /* animation-name: fadeIn;
+    animation-duration: 0.5s; */
+  }
+  @keyframes fadeIn {
+    0%{
+      top:20px;
+      opacity:0;
+    }
+    100%{
+      top:0;
+      opacity:1;
     }
 }

@@ -11,15 +11,22 @@ const IndexInicio = () => {
   const [productos, setProductos] = useState<Producto[]>([])
   const [pagina, setPagina] = useState<number>(5)
   const escuchador = useRef<HTMLDivElement>(null)
+  const [loading, setLoading] = useState<boolean>(false)
   const {show} = useInterObserver({distancia:'10px', externalRef: escuchador, once:false} )
   useEffect(() => {
-      getProductsService(pagina).then(setProductos)            
+    setLoading(true)
+      getProductsService(pagina).then((productosAPI)=>{
+        setProductos(productosAPI)
+        setLoading(false)
+      })  
   },[pagina])
   
+  const paginacion = ()=>{
+    setPagina((prev)=>{return prev+5})
+  }
 
-  const debounceHandleNextPage = useCallback(
-    ()=>{debounce(setPagina((prev)=>{return prev+5}), 2000)
-  },[]) 
+  const debounceHandleNextPage = useCallback(debounce(paginacion, 100)
+  ,[]) 
 
   useEffect(() => {
    if(show && pagina<20) debounceHandleNextPage()        
@@ -27,9 +34,9 @@ const IndexInicio = () => {
   
   return (
     <div className="container">
-      <h5 style={{marginBottom:'-40px', marginTop:'20px'}}>Mostrando 5 resultados de 20</h5>
+      <h5 style={{marginBottom:'-40px', marginTop:'20px'}}>Mostrando {pagina} resultados de 20</h5>
       <ListOfProducts Productos={productos}/>
-      <div ref={escuchador}>escuchador</div>
+      <div ref={escuchador}>{loading?"cargando":""}</div>
     </div>
   )
 }
