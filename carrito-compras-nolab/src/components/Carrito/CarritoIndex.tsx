@@ -17,7 +17,7 @@ const Carrito = (): JSX.Element => {
       Object.values(carrito).length > 0 ? (
         <div className='ContenidoCompleto'>
           <div className='productosCarrito'>
-            {Object.values(carrito).map((item)=>{
+            {Object.values(carrito).map((item:any)=>{
               return(
             <div className='Producto'>
               <img src={item.image} width={'50px'} alt="" />

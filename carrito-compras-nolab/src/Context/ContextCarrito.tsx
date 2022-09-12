@@ -4,7 +4,7 @@ import Producto from "../interface/Producto";
 type CartType = {[productId:number]:Producto}
 
 type CartContextType = {
-    carrito: {[productId:number]:Producto};
+    carrito: {[productId:number]:any};
     actions:{
         add:(product:Producto) => void; 
         clear:()=>void ;
