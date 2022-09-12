@@ -1,21 +1,19 @@
 import { createContext, useState} from "react";
 import Producto from "../interface/Producto";
 
-type CartType = {[productId:number]:number}
+type CartType = {[productId:number]:Producto}
 
 type CartContextType = {
-    carrito: {[productId:number]:number};
+    carrito: {[productId:number]:Producto};
     actions:{
-        add:(productId: number) => void;
-        remove:(productId: number) => void;
+        add:(product:Producto) => void;        
     }
 }
 
 const initialValue:CartContextType = {
     carrito: {},
     actions:{
-        add:()=>{},
-        remove: ()=>{}
+        add:()=>{},        
     }
 }
 
@@ -32,14 +30,10 @@ export function CartProvider ({children}:PropsContext){
             {
                 carrito,
                 actions:{
-                    add:(productId:number)=>{
+                    add:(product:Producto)=>{                        
                         return setCarrito((curr)=>({...curr,
-                            [productId]:(curr[productId] || 0) +1}))
-                    },
-                    remove:(productId:number)=>{
-                        return setCarrito((curr)=>({...curr,
-                            [productId]:curr[productId] ? curr[productId] - 1: 0}))
-                    }
+                            [product.id]:{...product}}))
+                    },                    
                 }
             }
         }>
