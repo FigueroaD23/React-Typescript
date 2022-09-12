@@ -3,20 +3,27 @@ import IProducto from "../../interface/Producto";
 import useInterObserver from "../../hooks/userInterObserver";
 import {CartContext} from "../../Context/ContextCarrito";
 
-import { useContext, useRef, memo } from "react";
+import { useContext, useRef, memo, useEffect } from "react";
 interface propsProducto {
     Producto:IProducto
 }
 const Producto = ({Producto}:propsProducto) => {  
+  useEffect(() => {
+    const carritoLocal = localStorage.getItem("carrito")
+    if(carritoLocal!=null){
+      console.log("carritoLocal",JSON.parse(carritoLocal))
+      actions.addLocalCart({...JSON.parse(carritoLocal)})
+    }
+  }, [])
+  
     const handleClick = ()=>{                        
         //console.log(producto)    
-        
+        localStorage.setItem("carrito",JSON.stringify(carrito))     
         if(!carrito.hasOwnProperty(Producto.id)){   
           console.log("primera vez")         
-          const carritoaux = {...carrito}
-          carrito[Producto.id] = {...Producto}
-          console.log("carritoaux",carritoaux)      
+          carrito[Producto.id] = {...Producto}          
           actions.add({...Producto,cantidad:1})
+          const carritoaux = {...carrito}        
           return
         }
         if(carrito.hasOwnProperty(Producto.id) && carrito[Producto.id].cantidad < carrito[Producto.id].stock){
@@ -24,7 +31,7 @@ const Producto = ({Producto}:propsProducto) => {
           const carritoaux = {...carrito}  
           Producto.cantidad = carritoaux[Producto.id].cantidad + 1;
           carritoaux[Producto.id] = {...Producto}          
-          actions.add({...Producto})
+          actions.add({...Producto})          
           return
         }        
         alert("no hay más stock")

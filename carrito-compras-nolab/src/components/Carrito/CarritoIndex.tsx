@@ -6,6 +6,11 @@ const Carrito = (): JSX.Element => {
   console.log("carrito", carrito)
   const totalPrice: number = Object.values(carrito).reduce((acc: number, curr: any) => acc + curr.price * curr.cantidad, 0)
 
+  const handleClickComprar = ()=>{
+    localStorage.setItem("compras", JSON.stringify(carrito))
+    actions.clear()
+  }
+
   /* Object.values(carrito).length > 0 ?   */
   return <div className='carritoContent'>
     {
@@ -28,7 +33,7 @@ const Carrito = (): JSX.Element => {
           <div className='footerCarrito'>
             <h4>No. Productos {Object.values(carrito).length}</h4>
             <h3>TOTAL: {totalPrice.toFixed(2)} MXN</h3>
-            <button className='comprarBTN'>Comprar</button>
+            <button className='comprarBTN' onClick={handleClickComprar}>Comprar</button>
           </div>
         </div>
       ) : <h2>No hay nada en el carrito, comienza a comprar amigo :D</h2>

@@ -6,14 +6,18 @@ type CartType = {[productId:number]:Producto}
 type CartContextType = {
     carrito: {[productId:number]:Producto};
     actions:{
-        add:(product:Producto) => void;        
+        add:(product:Producto) => void; 
+        clear:()=>void ;
+        addLocalCart: (carrito:CartType)=> void;      
     }
 }
 
 const initialValue:CartContextType = {
     carrito: {},
     actions:{
-        add:()=>{},        
+        add:()=>{},  
+        clear:()=>{},   
+        addLocalCart:()=>{}      
     }
 }
 
@@ -33,7 +37,13 @@ export function CartProvider ({children}:PropsContext){
                     add:(product:Producto)=>{                        
                         return setCarrito((curr)=>({...curr,
                             [product.id]:{...product}}))
-                    },                    
+                    },  
+                    clear:()=>{
+                        return setCarrito({})
+                    },
+                    addLocalCart:(carrito:CartType)=>{
+                        return setCarrito(carrito)
+                    }
                 }
             }
         }>
