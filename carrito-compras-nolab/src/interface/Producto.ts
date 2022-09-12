@@ -5,5 +5,5 @@ export default interface Producto {
     description: string;    
     image: string; 
     stock:number;
-    cantidad?:number
+    cantidad:number
 }
