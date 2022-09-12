@@ -7,12 +7,12 @@ import './App.scss'
 import { Navbar } from "./components/Navbar/Navbar";
 import Inicio from "./pages/inicio/IndexInicio";
 import {CartProvider} from "./Context/ContextCarrito";
+import Carrito from "./components/Carrito/CarritoIndex";
 function App(): JSX.Element {
 
   return (
     <CartProvider>
-
-      <Router>
+      <Router>        
         <Navbar />
         <div className="container">
           <Switch>
