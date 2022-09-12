@@ -26,7 +26,7 @@ const IndexInicio = () => {
     setPagina((prev)=>{return prev+5})
   }
 
-  const debounceHandleNextPage = useCallback(debounce(paginacion, 100)
+  const debounceHandleNextPage = useCallback(debounce(paginacion, 10)
   ,[]) 
 
   useEffect(() => {

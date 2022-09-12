@@ -7,19 +7,32 @@ const Carrito = (): JSX.Element => {
   const totalPrice: number = Object.values(carrito).reduce((acc: number, curr: any) => acc + curr.price * curr.cantidad, 0)
 
   /* Object.values(carrito).length > 0 ?   */
-  return <div>
-    <div>
-      {
-      Object.values(carrito).length > 0 ?(
-        <>
-        <img className="imgCarrito" src={Object.values(carrito)[0].image} alt="" />
-        <span>items in cart: {Object.values(carrito).length}</span>
-        <br />
-        <span>total price: {totalPrice.toFixed(2)}</span>
-        </>
+  return <div className='carritoContent'>
+    {
+      Object.values(carrito).length > 0 ? (
+        <div className='ContenidoCompleto'>
+          <div className='productosCarrito'>
+            {Object.values(carrito).map((item)=>{
+              return(
+            <div className='Producto'>
+              <img src={item.image} width={'50px'} alt="" />
+              <h5>{item.title}</h5>
+              <h5>${item.price}</h5>
+              <h5>Cant.{item.cantidad}</h5>
+              <h5>Total: ${item.cantidad * item.price}</h5>
+            </div>
+            )
+            })}
+
+          </div>
+          <div className='footerCarrito'>
+            <h4>No. Productos {Object.values(carrito).length}</h4>
+            <h3>TOTAL: {totalPrice.toFixed(2)} MXN</h3>
+            <button className='comprarBTN'>Comprar</button>
+          </div>
+        </div>
       ) : <h2>No hay nada en el carrito, comienza a comprar amigo :D</h2>
-      }
-    </div>
+    }
   </div>
 }
 
